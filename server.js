@@ -9,8 +9,8 @@ log4js.configure('./config/logappender.json', {});
 global.logger = log4js.getLogger('app');
 
 require('./app/routes.js')(app);
-
-var server = app.listen(80, function() {
+var port = Number(process.env.PORT || 5000);
+var server = app.listen(port, function() {
     global.logger.info('Listening on port %d', server.address().port);
 });
 // var http = require("http");
