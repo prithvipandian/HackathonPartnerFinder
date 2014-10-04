@@ -1,0 +1,39 @@
+html{
+
+      
+  }
+
+body {
+    margin: 0;
+    padding: 0;
+
+}
+
+/* Header styles */
+#banner {
+    text-align: center;
+    background: #0ABD8A;
+    color: #FFFFFF;
+    margin: 0;
+    margin-bottom: 0;
+    padding: 30px;
+    margin-bottom: 75px;
+}
+
+h1 {
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-weight: 100;
+    font-size: 42px;
+}
+#icons {
+    max-width: 600px;
+    height: 400px;
+    margin: 0 auto;
+}
+#grid a {
+    display: block;
+    float: left;
+    width: 200px;
+    height: 200px;
+    color: #FED600;
+}

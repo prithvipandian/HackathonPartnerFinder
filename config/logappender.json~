@@ -1,0 +1,19 @@
+{ "appenders": [ 
+		{ 
+	        "category": "app"
+	      , "type": "logLevelFilter"
+	      , "level": "INFO"
+	      , "appender": {
+		        "type": "dateFile"
+			  , "filename": "log/serverlog/server.log"
+			  , "pattern": "-yyyy-MM-dd"
+		    }
+	    }
+	  , {
+		    "type": "dateFile"
+		  , "filename": "log/accesslog/access.log"
+		  , "pattern": "-yyyy-MM-dd"
+		  , "category": "access"
+		}  
+	]
+}
