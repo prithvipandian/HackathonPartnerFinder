@@ -1,21 +1,26 @@
-html, body {
-    height: 100%;
-}
+html{
+
+      
+  }
+
 body {
     margin: 0;
     padding: 0;
+
 }
 
 /* Header styles */
-header {
+#banner {
     text-align: center;
     background: #0ABD8A;
     color: #FFFFFF;
     margin: 0;
     margin-bottom: 0;
     padding: 30px;
+    margin-bottom: 75px;
 }
-header span {
+
+h1 {
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-weight: 100;
     font-size: 42px;
