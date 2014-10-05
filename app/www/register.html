@@ -8,22 +8,130 @@
 <link rel="stylesheet" type="text/css" href="../css/index.css">
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <script src="../js/bootstrap.min.js"></script>
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=175171199291545&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
 <!-- Header END -->
-
-
 </head>
 
 <body>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Registration</h4>
+      </div>
+      <div class="modal-body">
+
+                        <form role="form">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+                                    </div>
+                                </div>
+                            </div>
+
+                        
+                        </form>
+      <div class="modal-footer">
+      <input type="submit" value="Register" class="btn btn-info btn-block">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Init Facebook SDK -->
+    <script>
+     $('#myModal').modal('show');
+    // $('#myModal').modal({ show: false})
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '386707621414765',
+          xfbml      : true,
+          version    : 'v2.1'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
+  function checkRegisterStatus() {
+    console.log('statusChangeCallback');
+    console.log(response);
+    response = FB.getLoginStatus();
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      //Trigger modal
+
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      $('#myModal').modal('show');
+      alert("Failure!");
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+
+    </script>
+
+</div>
 
 <div class="jumbotron" id="banner">
         <h1>HackaFinder</h1>  
@@ -35,20 +143,15 @@
     <!-- Button trigger modal -->
 
 
-        <div class="col-md-12">
-            <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
-            </div>
-                <div class = "text-center">
-                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                             Login
-                    </button>
-                </div>
-        <hr>
         <div class = "col-md-12">
             <div class = "text-center">
-                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                     Register
-                </button>
+                <fb:login-button scope="public_profile,email" onlogin="checkRegisterStatus()">
+                </fb:login-button>
+
+                <div id="status">
+                <!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> -->
+                     <!-- Register -->
+                <!-- </button> -->
             </div>
         </div>
     </div>
@@ -56,7 +159,15 @@
 
 </body>
 
-<link rel="import" href="registerModal.html">
+
+
+
+
+
+
+
+
+
 
 
 
