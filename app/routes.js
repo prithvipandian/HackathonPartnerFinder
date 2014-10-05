@@ -44,7 +44,11 @@ module.exports = function(app) {
 ======================== API START =======================
 */
     app.post('/app/teaminfo', function(req, res) {
-        global.logger.info(req.body);
+    	var idea = req.body;
+        global.logger.info(idea);
+        mongoConn.addIdea(idea, function(err){
+    		if(err) throw err;
+    	});
     });
     app.post('/app/register', function(req,res){
     	var user = req.body;
