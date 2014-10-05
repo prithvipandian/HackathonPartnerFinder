@@ -86,6 +86,19 @@ function registerIdea(hackathon){
   });
   idea.Tags = cboxArray;
 
+  grouptype = $( ":radio:checked" ).val();
+
+  idea.panelType = "default";
+  if (grouptype == "Beginner Friendly") {
+    idea.panelType = "info";
+  }
+  if (grouptype == "Hack to Win") {
+    idea.panelType = "danger";
+  }
+  if (grouptype == "Explore") {
+    idea.panelType = "success";
+  }
+  
   $.ajax({
       url: '/app/teamInfo'+ "?" +$.param(idea),
       dataType: 'jsonp',
