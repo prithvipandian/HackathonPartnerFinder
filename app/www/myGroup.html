@@ -6,84 +6,104 @@
 <title>HackaFindUs.io</title>
 <script src = "js/jquery-2.1.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/index.css">
-<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+<link href="/css/bootstrap.css" rel="stylesheet">
 <script src="/js/bootstrap.min.js"></script>
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js" ></script>
+<script>
+  $(document).ready(function() {
+    $.getJSON('/dummy.json', function(data) {
+      console.log(data);
+      $("#templatecontainer").load("/views/partials/teams_view.mustache #teams_view_template", function() {
+        var template = document.getElementById('templatecontainer').innerHTML;
+        var output = Mustache.render(template, data);
+        $("#teamdiv").html(output);
+      });
+    });
+  });
+</script>
 <style type="text/css">
   .vertical-align {
     margin-top:20px;
 }
 </style>
 
-
 </head>
 
 <body>
+
+<div class="jumbotron" id="banner">
+        <h1>HackaFinder</h1>  
+        <h2>Hacking teams together since 2014</h2>
+</div>
+<!-- Header END -->
 <div class="container">
     <div class="row" >
-        <div class="column-md-6">
-            <div class="text-left vertical-align">
-                <h1> Class Reminder </h1>
-            </div>
-        </div>
-        <div class="column-md-6">
-            <div class="pull-right" style="margin-up:-20px;">
-                    <!-- Button trigger modal -->
-                    <button class="btn btn-primary btn-lg" onclick="confirm('are you sure you want to unjoin this team?');">
-                Unjoin
-                    </button>
-            </div>
+        <div class="col-md-6 text-left vertical-align">
+                <!-- Button trigger modal -->
+                <button class="btn btn-danger btn-lg" onclick="confirm('are you sure you want to leave this team?');">Leave this team</button>
         </div>
     </div>
-    <div class="row">
-        <h2> Members: </h2>
-    </div>
-    <!-- Members rows -->
-    <div class="row">
-        <div class="column-md-3">
-        <div class="panel panel-default"style="width:25%">
+<br>
+
+ <div class="row">
+    <div>
+       <div class="panel panel-default col-md-12">
           <div class="panel-heading">
             <h3 class="panel-title"></h3>
-            <div class="media">
-              <a class="pull-left" href="#">
-                <img class="media-object" src="/img/leader1.jpg" alt="..." height="50px" width="50px">
-              </a>
                   <div class="media-body">
-                        <h4 class="media-heading">Daniel Feldman(Author)</h4>
-                    I can do front-end as sick as a STD                  
-                </div>
-            </div>
-            </div>
-            </div>
-        </div>
+                    <div class="col-md-6">
+                        <h4 >GEOLOCATION HACK</h4>
+                        <p>Make us go to class</p>
+                    </div>
 
-        <div class="column-md-3">
-        <div class="panel panel-default"style="width:25%">
-          <div class="panel-heading">
-            <h3 class="panel-title"></h3>
-            <div class="media">
-              <a class="pull-left" href="#">
-                <img class="media-object" src="/img/leader1.jpg" alt="..." height="50px" width="50px">
-              </a>
-                  <div class="media-body">
-                        <h4 class="media-heading">Daniel Feldman(Author)</h4>
-                    I can do front-end as sick as a STD                  
-                </div>
-            </div>
-            </div>
+                    <div class="col-md-6 text-right">
+                      
+                        <img src="/img/tags/android.png" width="30px" height="30px">
+                      
+                        <img src="/img/tags/nodejs.jpeg" width="30px" height="30px">
+                      
+                    </div>
+                    
+              
+                  </div>
+                  <div class="panel-body">
+                    Looking for: NodeJS, Java, Android
+                  </div>
             </div>
         </div>
     </div>
-
-    <!-- Members rows -->
-    <div class="row">
-        <h2> Description: </h2>
-    </div>
-    <div class="row">
-        <font size="4"> This project blabababbab and it also prevents you from skipping class
-
-        </font>
-    </div>
-
 </div>
+
+    <div class="row">
+        <h1 class="text-center">Teammates</h1>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title"></h3>
+                <div class="media">
+                  <a class="pull-left" href="#">
+                    <img class="media-object" src="/img/leader1.jpg" alt="..." height="50px" width="50px">
+                  </a>
+                      <div class="media-body">
+                        <div class="col-md-6">
+                            <h4 class="media-heading">GEOLOCATION HACK!</h4>
+                        Make us go to class
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="panel-body">
+                Looking for: NodeJS, Java, Android
+              </div>
+          </div>
+
+        </div> <!-- End Col-md-4-->
+        <div class="col-md-4">empty</div>
+    </div>
+
+</div> <!-- End countainer -->
+    <!-- Members rows -->
+   
 </body>
