@@ -43,7 +43,7 @@ module.exports = function(app) {
 ======================== API START =======================
 */
     app.post('/app/teaminfo', function(req, res) {
-	    global.logger.info(req);
+        global.logger.info(req.body);
     });
     app.post('/app/request', function(req,rest){
     	global.logger.info(req);
