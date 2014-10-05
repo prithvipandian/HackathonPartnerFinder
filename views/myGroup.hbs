@@ -41,20 +41,19 @@
 
 <div class="container">
     <div class="row" >
-        <div class="col-md-3 text-left vertical-align">
-                <!-- Button trigger modal -->
-         <button class="btn btn-danger btn-lg" onclick="confirm('are you sure you want to leave this team?');">Leave this team</button>
-        </div>
-        <div class="col-md-6 text-center">
-            <h2>{{ideaTitle}}</h2>
-           
-            <p class="text-left">{{ideaDescription}}</p>
+        <div class="col-md-6 text-left">
+            <h2>{{title}}</h2>
+            <p class="text-left">{{description}}</p>
              Using: 
             {{#Tags}}
             <img src="/img/tags/{{imageName}}" width="30px" height="30px">
             {{/Tags}}
         </div>
         <div class="col-md-3"></div>
+         <div class="col-md-3 text-right vertical-align">
+                <!-- Button trigger modal -->
+         <button class="btn btn-danger btn-lg" onclick="confirm('are you sure you want to leave this team?');">Leave this team</button>
+        </div>
         <hr>
     </div>
 <br>
@@ -80,21 +79,19 @@
     <div class="col-md-3">
         <div class="panel panel-info text-center">
             <div class="panel-heading">
-                <h4> {{first_name}} {{last_name}} </h4>
+                {{first_name}} {{last_name}}
             </div>
             <div class="panel-body">
-                <img class="img-rounded " src="{{img}}" alt="..." height="250px" width="200px">
+                <img class="img-rounded " src="{{img}}" alt="..." height="150px" width="150px">
                 <br>
-                
                     Hacker Level:                    
-                <p id="hacker{{uid}}">
+                 <p id="hacker{{uid}}">
                  </p>
-                    
             </div>
             <div class="panel-footer">
-                <b><p>Special Abilities:</b> 
+               Special Abilities:
                 <br>
-                {{skills}}</p>
+                {{skills}}
             </div>
         </div>
     </div> <!-- End Col-md-3-->
@@ -103,14 +100,6 @@
 
 </div> <!-- End countainer -->
     <!-- Members rows -->
-<div class="row text-center">
-        <h1 class="text-center">Discussion</h1>
 
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-            <div id = 'comments' class="fb-comments" data-href="http://example.com/comments" data-numposts="5" data-colorscheme="light", data-width="100%"></div>
-    </div>
-    <div class="col-md-3"></div>
-
-</div>
+<div id = 'comments' class="fb-comments" data-href="http://example.com/comments" data-numposts="5" data-colorscheme="light", data-width="100%"></div>
 </body>
