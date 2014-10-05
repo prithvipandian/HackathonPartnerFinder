@@ -9,13 +9,24 @@
 <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 <link href="/css/bootstrap.css" rel="stylesheet">
 <script src="/js/bootstrap.min.js"></script>
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js" ></script>
+<script>
+  $(document).ready(function() {
+    $.getJSON('/dummy.json', function(data) {
+      console.log(data);
+      $("#templatecontainer").load("/views/partials/teams_view.mustache #teams_view_template", function() {
+        var template = document.getElementById('templatecontainer').innerHTML;
+        var output = Mustache.render(template, data);
+        $("#teamdiv").html(output);
+      });
+    });
+  });
+</script>
 <style type="text/css">
   .vertical-align {
     margin-top:20px;
 }
 </style>
-
 
 </head>
 
@@ -46,30 +57,10 @@
     </div>
     <hr>
     <div class="row">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title"></h3>
-            <div class="media">
-              <a class="pull-left" href="#">
-                <img class="media-object" src="/img/leader1.jpg" alt="..." height="50px" width="50px">
-              </a>
-                  <div class="media-body">
-                    <div class="col-md-6">
-                        <h4 class="media-heading">GEOLOCATION HACK: Make us go to class</h4>
-                    Location based app that uses google calendar data to check if you are in class!
-                    </div>
-                    <div class="col-md-6 text-right">
-                        <img src="/img/tags/android.png" width="30px" height="30px">
-                        <img src="/img/tags/nodejs.jpeg" width="30px" height="30px">
-                    </div>
-                    
-                </div>
-            </div>
-          </div>
-          <div class="panel-body">
-            Looking for: Node.js devs, Frontend, Alaska
-          </div>
-</div>
+    <div id="templatecontainer" style="display: none;">
+    </div>
+    <div id="teamdiv">
+    </div>
     </div>
 </div>
 

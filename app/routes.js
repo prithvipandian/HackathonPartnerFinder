@@ -1,4 +1,5 @@
-var landingPage = '/www/index.html';
+var landingPage = '/www/index.html',
+    mustache = require('mustache');
 
 
 module.exports = function(app) {
