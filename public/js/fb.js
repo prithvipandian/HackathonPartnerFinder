@@ -6,7 +6,9 @@ function registerUser(){
   user.level = $('#level').val();
   user.skills = $('#skills').val();
   console.log(user);
-  $.post( "/app/register", user );
+  $.get( "/app/register"+ $.param(user), function(retval){
+    //donothing
+  } );
   $('#registerModal').modal('hide');
 }
 
@@ -17,7 +19,10 @@ function registerIdea(){
   idea.keywords= $('#keywords').val();
   idea.size= $('#size').val();
   idea.description= $('#description').val();
-  $.post( "/app/teamInfo", idea );
+  //$.post( "/app/teamInfo", idea );
+  $.get( "/app/teamInfo"+ $.param(idea), function(retval){
+    //donothing
+  } );
   $('#myModal').modal('hide');
 }
 
