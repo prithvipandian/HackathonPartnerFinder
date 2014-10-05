@@ -41,13 +41,8 @@
 
 <div class="container">
     <div class="row" >
-        <div class="col-md-3 text-left vertical-align">
-                <!-- Button trigger modal -->
-         <button class="btn btn-danger btn-lg" onclick="confirm('are you sure you want to leave this team?');">Leave this team</button>
-        </div>
-        <div class="col-md-6 text-center">
+        <div class="col-md-6 text-left">
             <h2>{{ideaTitle}}</h2>
-           
             <p class="text-left">{{ideaDescription}}</p>
              Using: 
             {{#Tags}}
@@ -55,6 +50,10 @@
             {{/Tags}}
         </div>
         <div class="col-md-3"></div>
+         <div class="col-md-3 text-right vertical-align">
+                <!-- Button trigger modal -->
+         <button class="btn btn-danger btn-lg" onclick="confirm('are you sure you want to leave this team?');">Leave this team</button>
+        </div>
         <hr>
     </div>
 <br>
@@ -63,7 +62,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h1 class="text-center">Teammates ({{numTeammates}}/5)</h1>
+        <h3 class="text-center">Teammates ({{numTeammates}}/5)</h3>
     </div>
 </div>
 
@@ -80,22 +79,19 @@
     <div class="col-md-3">
         <div class="panel panel-info text-center">
             <div class="panel-heading">
-                <h4> {{first_name}} {{last_name}} </h4>
+                {{first_name}} {{last_name}}
             </div>
             <div class="panel-body">
-                <img class="img-rounded " src="{{img}}" alt="..." height="250px" width="200px">
+                <img class="img-rounded " src="{{img}}" alt="..." height="150px" width="150px">
                 <br>
-                <p id="hacker{{uuid}}">
-                </p>
-                <p>
                     Hacker Level:                    
-                </p>
-                    
+                 <p id="hacker{{uuid}}">
+                 </p>
             </div>
             <div class="panel-footer">
-                <b><p>Special Abilities:</b> 
+               Special Abilities:
                 <br>
-                {{skills}}</p>
+                {{skills}}
             </div>
         </div>
     </div> <!-- End Col-md-3-->
