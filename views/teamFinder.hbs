@@ -47,6 +47,7 @@
     <hr>
     <div class="row">
 {{#Teams}}
+      <div class="col-md-6">
        <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title"></h3>
@@ -71,7 +72,11 @@
           <div class="panel-body">
             Looking for: {{lookingFor}}
           </div>
+          <div class=panel-footer>
+            <a href="">View Team</a>
+          </div>
       </div>
+    </div>
 {{/Teams}}
     </div>
     </div>
@@ -128,6 +133,29 @@
                 </div>
           </div>
           </div>
+
+          <div class="form-group">
+           <div class="control-group">
+            <label class="control-label" for="inputDescription">Group type</label>
+                <div class="controls">
+                  <div class="row text-center">
+                    <div class="col-md-4">
+                      <input type="radio" name="grouptype" value="Hack to Win"> 
+                      <p>Hack to Win</p>
+                    </div>
+                    <div class="col-md-4">
+                      <input type="radio" name="grouptype" value="Beginner Friendly"> 
+                      <p>Beginner Friendly</p>
+                    </div>
+                    <div class="col-md-4">
+                      <input type="radio" name="grouptype" value="Explore"> 
+                      <p>Explore</p>
+                    </div>
+                  </div>
+                </div>
+          </div>
+          </div>
+
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary" onclick='registerIdea();'>Create</button>
