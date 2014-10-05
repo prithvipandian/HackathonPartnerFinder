@@ -4,10 +4,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>HackaFindUs.io</title>
-
+<script src = "js/jquery-2.1.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/index.css">
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<script src="../js/bootstrap.min.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<script src="js/bootstrap.min.js"></script>
 
 
 
@@ -24,10 +24,18 @@
 <!-- oursite.com/findTeams.html? -->
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="text-left">
                 <h2>Teams:</h2>
-            <div>
+            </div>
+        </div>
+        <div class="col-md-6 text-right">
+          <div class="text-right">
+            <!-- Button trigger modal -->
+              <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+              +
+              </button>
+          </div>
         </div>
     </div>
     <hr>
@@ -59,14 +67,6 @@
     </div>
 </div>
 
-</body>
-
-<!-- Modal  -->
-
-<!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -88,3 +88,4 @@
 </div>
 
 <!-- Modal -->
+</body>
