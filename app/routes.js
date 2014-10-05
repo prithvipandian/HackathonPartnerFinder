@@ -38,6 +38,7 @@ module.exports = function(app) {
         res.render("teamFinder.hbs", dummyJSON);
     });
     app.get('/myGroup/', function(req, res) {
+        
         var dummyJSON = {
             "ideaTitle": "GEOLOCATION HACK!",
             "ideaDescription": "Make us go to class",

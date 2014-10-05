@@ -1,4 +1,39 @@
 var uuid;
+
+function leaveIdea(idea){
+  fbid(function(uuid){
+      var data = {'idea':idea, 'id':id};
+      $.ajax({
+      url: '/app/leaveIdea'+ "?" +$.param(data),
+      dataType: 'jsonp',
+      success: function(data){
+          //do nothing
+      }
+  });
+
+  });
+}
+
+function joinIdea(idea){
+  fbid(function(uuid){
+      var data = {'idea':idea, 'id':id};
+      $.ajax({
+      url: '/app/joinIdea'+ "?" +$.param(data),
+      dataType: 'jsonp',
+      success: function(data){
+          //do nothing
+      }
+  });
+
+  });
+}
+
+function fbid(callback){
+  FB.getLoginStatus(function(response){
+    callback(response.authResponse.userID);
+  });
+}
+
 function registerUser(){
   var user = {};
   user.first_name = $('#first_name').val();
@@ -31,12 +66,14 @@ function registerUser(){
 }
 
 function registerIdea(){
+  fbid(function(uuid){
   var idea = {};
   idea.title= $('#title').val();
   idea.looking= $('#looking').val();
   idea.keywords= $('#keywords').val();
   idea.size= $('#size').val();
   idea.description= $('#description').val();
+  idea.uuid = uuid;
 
   $.ajax({
       url: '/app/teamInfo'+ "?" +$.param(idea),
@@ -52,6 +89,8 @@ function registerIdea(){
   //   //donothing
   // } );
   $('#myModal').modal('hide');
+  });
+
 }
 
 
