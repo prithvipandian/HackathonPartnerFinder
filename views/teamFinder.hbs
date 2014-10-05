@@ -57,8 +57,8 @@
               </a>
                   <div class="media-body">
                     <div class="col-md-6">
-                        <h4 class="media-heading">{{Title}}</h4>
-                    {{Description}}
+                        <h4 class="media-heading">{{title}}</h4>
+                    {{description}}
                     </div>
                     <div class="col-md-6 text-right">
                       {{#Tags}}
@@ -70,10 +70,10 @@
             </div>
           </div>
           <div class="panel-body">
-            Looking for: {{lookingFor}}
+            Looking for: {{looking}}
           </div>
           <div class=panel-footer>
-            <a href="">View Team</a>
+            <a href="/myGroup?hackathon={{hackathon}}&groupId={{gid}}">View Team</a>
           </div>
       </div>
     </div>
@@ -91,7 +91,7 @@
         <h4 class="modal-title" id="myModalLabel"> Create new Team</h4>
       </div>
       <div class="modal-body">
-        <form class= "form-new-group" method="post" action="/app/teaminfo">
+        <form class= "form-new-group" method="get" action="/app/teaminfo">
           <div class="form-group">
 
           <div class="control-group">
@@ -156,9 +156,39 @@
           </div>
           </div>
 
+          <div class="form-group">
+            <div class="control-group">
+              <label class="control-label"
+              for="inputDescription">Skills</label>
+              <div class="controls">
+              <label class="checkbox-inline">
+                <input type="checkbox" id="android" value="option1"> <img src="/img/tags/android.png" height="45px" width="45px">
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="geolocation" value="option2"> <img src="/img/tags/geolocation.png" height="45px" width="45px">
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="hardware" value="option3"> <img src="/img/tags/hardware.png" height="45px" width="45px">
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="ios" value="option4"> <img src="/img/tags/ios.png" height="45px" width="45px">
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="nodejs1" value="option5"> <img src="/img/tags/nodejs.jpeg" height="45px" width="45px">
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="nodejs2" value="option6"> <img src="/img/tags/nodejs.png" height="45px" width="45px">
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="wearables" value="option7"> <img src="/img/tags/wearables.png" height="45px" width="45px">
+              </label>
+              </div>
+            </div>
+          </div>
+
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" onclick='registerIdea();'>Create</button>
+        <button class="btn btn-primary" onclick='registerIdea("{{hackathon}}");'>Create</button>
       </div>
       </form>
     </div>
