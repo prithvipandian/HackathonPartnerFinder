@@ -6,7 +6,9 @@ function registerUser(){
   user.level = $('#level').val();
   user.skills = $('#skills').val();
   console.log(user);
-  $.post( "/app/register", user );
+  //$.post( "/app/register", user );
+  $.getJSON("/app/register"+"?" +$.param(user), 
+            function(data) { onComplete(data); });
   // $.get( "/app/register"+"?" +$.param(user), function(retval){
   //   //donothing
   // } );
@@ -20,7 +22,9 @@ function registerIdea(){
   idea.keywords= $('#keywords').val();
   idea.size= $('#size').val();
   idea.description= $('#description').val();
-  $.post( "/app/teamInfo", idea );
+  $.getJSON('/app/teamInfo'+ "?" +$.param(idea), 
+            function(data) { onComplete(data); });
+  //$.post( "/app/teamInfo", idea );
   // $.get( "/app/teamInfo"+ "?" +$.param(idea), function(retval){
   //   //donothing
   // } );
