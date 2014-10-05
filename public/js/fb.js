@@ -10,6 +10,17 @@ function registerUser(){
   $('#registerModal').modal('hide');
 }
 
+function registerIdea(){
+  var idea = {};
+  idea.title= $('#title').val();
+  idea.looking= $('#looking').val();
+  idea.keywords= $('#keywords').val();
+  idea.size= $('#size').val();
+  idea.description= $('#description').val();
+  $.post( "/app/teamInfo", idea );
+  $('#myModal').modal('hide');
+}
+
 
 
 
