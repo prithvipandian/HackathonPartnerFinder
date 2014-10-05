@@ -10,8 +10,10 @@
 <link href="/css/bootstrap.css" rel="stylesheet">
 <script src="/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js" ></script>
+<script src= "/js/fb.js"></script>
 <script>
   $(document).ready(function() {
+    $('.fb-comments').attr("data-href", document.URL);
     $.getJSON('/dummy.json', function(data) {
       console.log(data);
       $("#templatecontainer").load("/views/partials/teams_view.mustache #teams_view_template", function() {
@@ -105,5 +107,10 @@
 
 </div> <!-- End countainer -->
     <!-- Members rows -->
+
+
+
+<!-- Comments! -->
+<div class="fb-comments" data-href= "document.URL;" data-numposts="5" data-colorscheme="light" data-width="100%"></div>
    
 </body>
