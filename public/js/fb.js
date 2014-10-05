@@ -12,6 +12,7 @@ function registerUser(){
   user.img = $('#profilePicture').attr('src');
   user.level = $('#level').val();
   user.skills = $('#skills').val();
+
   user.uuid= uuid;
   console.log(user);
   //$.post( "/app/register", user );
@@ -39,6 +40,11 @@ function registerIdea(hackathon){
   idea.keywords= $('#keywords').val();
   idea.size= $('#size').val();
   idea.description= $('#description').val();
+  var cboxArray = [];
+  $.each($(":checkbox:checked"), function(index, cbox) {
+      cboxArray.push({"imageName": cbox.value});
+  });
+  idea.Tags = cboxArray;
 
   $.ajax({
       url: '/app/teamInfo'+ "?" +$.param(idea),
