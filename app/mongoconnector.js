@@ -1,17 +1,17 @@
 var MongoClient = require('mongodb').MongoClient,
-    mongoURL = "mongodb://127.0.0.1:27017/hackafinder",
-    mclient = null;
+    mongoBaseURL = "mongodb://127.0.0.1:27017/",
+    mclients = {};
 
-var connectToMongo = function(next) {
-    if (mclient) {
-        next(null, mclient);
+var connectToMongo = function(dbname, next) {
+    if (mclients[dbname] != null) {
+        next(null, mclients[dbname]);
     } else {
-        MongoClient.connect(mongoURL, function(err, db) {
+        MongoClient.connect(mongoBaseURL+dbname, function(err, db) {
             if (err) {
                 global.logger.error('Error connecting to Mongo');
                 next(err, null);
             } else {
-                mclient = db;
+                mclients[dbname] = db;
                 next(null, db);
             }
         });
@@ -19,7 +19,7 @@ var connectToMongo = function(next) {
 };
 
 exports.addIdea = function(ideaJSON, next) {
-    connectToMongo(function(err, db) {
+    connectToMongo(dbname, function(err, db) {
         if (err) throw err;
         db.collection('ideas').insert(ideaJSON, {w:1}, function(err, records){
             if (err) {
@@ -32,7 +32,7 @@ exports.addIdea = function(ideaJSON, next) {
 };
 
 exports.getIdea = function(groupId, next) {
-    connectToMongo(function(err, db) {
+    connectToMongo(dbname, function(err, db) {
         if (err) throw err;
         db.collection('ideas').findOne( { gid: groupId }, function(err, document) {
             next(null, document);
@@ -41,7 +41,7 @@ exports.getIdea = function(groupId, next) {
 };
 
 exports.getAllIdeas = function(next) {
-    connectToMongo(function(err, db) {
+    connectToMongo(dbname, function(err, db) {
         if (err) throw err;
         db.collection('ideas').find().toArray(function(err, results) {
             next(null, results);
@@ -50,7 +50,7 @@ exports.getAllIdeas = function(next) {
 };
 
 exports.addUser = function(userJSON, next) {
-    connectToMongo(function(err, db) {
+    connectToMongo(dbname, function(err, db) {
         if (err) throw err;
 	db.collection('users').insert(userJSON, {w: 1}, function(err, records){
             if (err) {
@@ -63,7 +63,7 @@ exports.addUser = function(userJSON, next) {
 };
 
 exports.getUser = function(userId, next) {
-    connectToMongo(function(err, db) {
+    connectToMongo(dbname, function(err, db) {
         if (err) throw err;
         db.collection('users').findOne( { uid: userId }, function(err, document) {
             next(null, document);
@@ -72,7 +72,7 @@ exports.getUser = function(userId, next) {
 };
 
 exports.addUserToGroup = function(userId, groupId, next) {
-    connectToMongo(function(err, db) {
+    connectToMongo(dbname, function(err, db) {
         if (err) throw err;
         db.collection('ideas').update( { gid: groupId }, { $push: { users: userId } }, { w:1, upsert: true }, function(err) {
             if (err) {
@@ -85,14 +85,14 @@ exports.addUserToGroup = function(userId, groupId, next) {
 };
 
 exports.removeUserFromGroup = function(userId, groupId, next) {
-    connectToMongo(function(err, db) {
+    connectToMongo(dbname, function(err, db) {
         if (err) throw err;
 	db.collection('ideas').update({gid: groupId}, {$pull: {users: userId}});
     });
 };
 
 exports.getAllUsersOfGroup = function(groupId, next) {
-    connectToMongo(function(err, db) {
+    connectToMongo(dbname, function(err, db) {
         if (err) throw err;
         db.collection('ideas').findOne({gid: groupId},{ users: true}, function(err, document) {
             var uids = document.users;
