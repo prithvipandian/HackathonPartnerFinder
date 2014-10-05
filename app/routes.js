@@ -57,14 +57,14 @@ module.exports = function(app) {
 ======================== API START =======================
 */
     app.get('/app/teaminfo', function(req, res) {
-        var idea = url.parse(req.url);
+        var idea = req.params;
         global.logger.info(idea);
         mongoConn.addIdea(idea, function(err){
             if(err) throw err;
     	});
     });
     app.get('/app/register', function(req,res){
-        var user = url.parse(req.url);
+        var user = req.params;
     	global.logger.info(user);
     	mongoConn.addUser(user, function(err){
     	    if(err) throw err;
