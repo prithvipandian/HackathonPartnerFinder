@@ -1,10 +1,12 @@
 var express = require('express'),
     app = express(),
     hbs = require('hbs'),
-    mustache = require('mustache');
+    mustache = require('mustache'),
+    bodyParser  = require('body-parser'),
     log4js = require('log4js');
    // bodyParser = require('body-parser');
 
+app.use(bodyParser.urlencoded());
 app.use(express.static(__dirname + '/public'));
 
 app.set('views', './views');
