@@ -49,8 +49,35 @@ module.exports = function(app) {
                     "imageName": "nodejs.jpeg"
 	        },
 	    ],
-            "lookingFor": "NodeJS, Android, Wearables"
+            "lookingFor": "NodeJS, Android, Wearables",
+            "Teammates": [ 
+                {
+                    "first_name": "Daniel",
+                    "last_name": "Feldman",
+                    "uuid": "asdf",
+                    "skills": "Mad skillz yo",
+                    "img":"/img/leader1.jpg",
+                    "level": "5"
+                },
+                {
+                    "first_name": "Daniel",
+                    "last_name": "Feldman",
+                    "uuid": "qwer",
+                    "skills": "Mad skillz yo 2",
+                    "img":"/img/leader1.jpg",
+                    "level": "5"
+                },
+                {
+                    "first_name": "Daniel",
+                    "last_name": "Feldman",
+                    "uuid": "zxcv",
+                    "skills": "Mad skillz yo 3",
+                    "img":"/img/leader1.jpg",
+                    "level": "5"
+                }
+            ]
         };
+        dummyJSON.numTeammates = dummyJSON.Teammates.length;
         res.render("myGroup.hbs", dummyJSON);
     });
 /*

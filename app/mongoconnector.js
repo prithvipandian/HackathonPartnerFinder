@@ -21,9 +21,9 @@ var connectToMongo = function(next) {
 exports.addIdea = function(ideaJSON, next) {
     connectToMongo(function(err, db) {
         if (err) throw err;
-        db.collection('ideas').update( { name: 'idea_array' }, { $push: { ideaArray: ideaJSON } }, { w:1, upsert: true }, function(err) {
+        db.collection('ideas').insert(ideaJSON, {w:1}, function(err, records){
             if (err) {
-                global.logger.error('Error updating idea_array document in collection ideas');
+                global.logger.error('Error inserting ideaJSON into ideas collection');
                 next(err);
             } 
             next(null);
@@ -31,21 +31,51 @@ exports.addIdea = function(ideaJSON, next) {
     });
 };
 
-exports.getIdea = function(next) {
+exports.getIdea = function(groupId, next) {
     connectToMongo(function(err, db) {
         if (err) throw err;
-        db.collection('ideas').findOne( { name: 'idea_array' }, function(err, document) {
+        db.collection('ideas').findOne( { gid: groupId }, function(err, document) {
             next(null, document);
         });
     });
+};
+
+exports.getAllIdeas = function(next) {
+    connectToMongo(function(err, db) {
+        if (err) throw err;
+        db.collection('ideas').find().toArray(function(err, results) {
+            next(null, results);
+        });
 };
 
 exports.addUser = function(userJSON, next) {
     connectToMongo(function(err, db) {
         if (err) throw err;
-        db.collection('users').update( { name: 'user_array' }, { $push: { userArray: userJSON } }, { w:1, upsert: true }, function(err) {
+	db.collection('users').insert(userJSON, {w: 1}, function(err, records){
             if (err) {
-                global.logger.error('Error updating user_array document in collection users');
+                global.logger.error('Error inserting user JSON into users collection');
+                next(err);
+            }
+            next(null);
+	});
+    });
+};
+
+exports.getUser = function(userId, next) {
+    connectToMongo(function(err, db) {
+        if (err) throw err;
+        db.collection('users').findOne( { uid: userId }, function(err, document) {
+            next(null, document);
+        });
+    });
+};
+
+exports.addUserToGroup = function(userId, groupId, next) {
+    connectToMongo(function(err, db) {
+        if (err) throw err;
+        db.collection('ideas').update( { gid: groupId }, { $push: { users: userId } }, { w:1, upsert: true }, function(err) {
+            if (err) {
+                global.logger.error('Error adding user ' + userId + ' to group');
                 next(err);
             } 
             next(null);
@@ -53,11 +83,22 @@ exports.addUser = function(userJSON, next) {
     });
 };
 
-exports.getUser = function(next) {
+exports.removeUserFromGroup = function(userId, groupId, next) {
     connectToMongo(function(err, db) {
         if (err) throw err;
-        db.collection('users').findOne( { name: 'user_array' }, function(err, document) {
-            next(null, document);
-        });
+	db.collection('ideas').update({gid: groupId}, {$pull: {users: userId}});
     });
 };
+
+exports.getAllUsersOfGroup = function(groupId, next) {
+    connectToMongo(function(err, db) {
+        if (err) throw err;
+        db.collection('ideas').findOne({gid: groupId},{ users: true}, function(err, document) {
+            var uids = document.users;
+            db.collection('ideas').find({uid: {$in: uids}}).toArray(function(err, document) {
+                next(null, document);
+            });
+	});
+    });
+};
+
