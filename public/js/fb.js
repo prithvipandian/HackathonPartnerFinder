@@ -7,8 +7,15 @@ function registerUser(){
   user.skills = $('#skills').val();
   console.log(user);
   //$.post( "/app/register", user );
-  $.getJSON("/app/register"+"?" +$.param(user), 
-            function(data) { onComplete(data); });
+   $.ajax({
+      url: "/app/register"+"?" +$.param(user),
+      dataType: 'jsonp',
+      success: function(data){
+          //do nothing
+      }
+  });
+  //$.getJSON("/app/register"+"?" +$.param(user), 
+  //          function(data) { onComplete(data); });
   // $.get( "/app/register"+"?" +$.param(user), function(retval){
   //   //donothing
   // } );
@@ -22,8 +29,16 @@ function registerIdea(){
   idea.keywords= $('#keywords').val();
   idea.size= $('#size').val();
   idea.description= $('#description').val();
-  $.getJSON('/app/teamInfo'+ "?" +$.param(idea), 
-            function(data) { onComplete(data); });
+
+  $.ajax({
+      url: '/app/teamInfo'+ "?" +$.param(idea),
+      dataType: 'jsonp',
+      success: function(data){
+          //do nothing
+      }
+  });
+  //$.getJSON('/app/teamInfo'+ "?" +$.param(idea), 
+  //          function(data) { onComplete(data); });
   //$.post( "/app/teamInfo", idea );
   // $.get( "/app/teamInfo"+ "?" +$.param(idea), function(retval){
   //   //donothing
