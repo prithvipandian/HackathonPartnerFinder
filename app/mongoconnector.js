@@ -18,7 +18,7 @@ var connectToMongo = function(dbname, next) {
     }
 };
 
-exports.addIdea = function(ideaJSON, next) {
+exports.addIdea = function(dbname, ideaJSON, next) {
     connectToMongo(dbname, function(err, db) {
         if (err) throw err;
         db.collection('ideas').insert(ideaJSON, {w:1}, function(err, records){
@@ -31,7 +31,7 @@ exports.addIdea = function(ideaJSON, next) {
     });
 };
 
-exports.getIdea = function(groupId, next) {
+exports.getIdea = function(dbname, groupId, next) {
     connectToMongo(dbname, function(err, db) {
         if (err) throw err;
         db.collection('ideas').findOne( { gid: groupId }, function(err, document) {
@@ -40,7 +40,7 @@ exports.getIdea = function(groupId, next) {
     });
 };
 
-exports.getAllIdeas = function(next) {
+exports.getAllIdeas = function(dbname, next) {
     connectToMongo(dbname, function(err, db) {
         if (err) throw err;
         db.collection('ideas').find().toArray(function(err, results) {
@@ -49,7 +49,7 @@ exports.getAllIdeas = function(next) {
     });
 };
 
-exports.addUser = function(userJSON, next) {
+exports.addUser = function(dbname, userJSON, next) {
     connectToMongo(dbname, function(err, db) {
         if (err) throw err;
 	db.collection('users').insert(userJSON, {w: 1}, function(err, records){
@@ -62,7 +62,7 @@ exports.addUser = function(userJSON, next) {
     });
 };
 
-exports.getUser = function(userId, next) {
+exports.getUser = function(dbname, userId, next) {
     connectToMongo(dbname, function(err, db) {
         if (err) throw err;
         db.collection('users').findOne( { uid: userId }, function(err, document) {
@@ -71,7 +71,7 @@ exports.getUser = function(userId, next) {
     });
 };
 
-exports.addUserToGroup = function(userId, groupId, next) {
+exports.addUserToGroup = function(dbname, userId, groupId, next) {
     connectToMongo(dbname, function(err, db) {
         if (err) throw err;
         db.collection('ideas').update( { gid: groupId }, { $push: { users: userId } }, { w:1, upsert: true }, function(err) {
@@ -84,20 +84,20 @@ exports.addUserToGroup = function(userId, groupId, next) {
     });
 };
 
-exports.removeUserFromGroup = function(userId, groupId, next) {
+exports.removeUserFromGroup = function(dbame, userId, groupId, next) {
     connectToMongo(dbname, function(err, db) {
         if (err) throw err;
 	db.collection('ideas').update({gid: groupId}, {$pull: {users: userId}});
     });
 };
 
-exports.getAllUsersOfGroup = function(groupId, next) {
+exports.getAllUsersOfGroup = function(dbname, groupId, next) {
     connectToMongo(dbname, function(err, db) {
         if (err) throw err;
         db.collection('ideas').findOne({gid: groupId},{ users: true}, function(err, document) {
             var uids = document.users;
-            db.collection('ideas').find({uid: {$in: uids}}).toArray(function(err, document) {
-                next(null, document);
+            db.collection('users').find({uid: {$in: uids}}).toArray(function(err, document2) {
+                next(null, document2);
             });
 	});
     });
