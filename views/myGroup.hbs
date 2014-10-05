@@ -41,19 +41,21 @@
 
 <div class="container">
     <div class="row" >
-        <div class="col-md-6 text-left">
-            <h2>{{title}}</h2>
-            <p class="text-left">{{description}}</p>
+        <div class="col-md-3 text-left vertical-align">
+                <!-- Button trigger modal -->
+         <button class="btn btn-danger btn-lg" onclick='leaveIdea("{{gid}}","{{hackathon}}");'>Leave this team</button>
+         <button class="btn btn-primary btn-lg" onclick='joinIdea("{{gid}}","{{hackathon}}");'>Join this team</button>
+        </div>
+        <div class="col-md-6 text-center">
+            <h2>{{ideaTitle}}</h2>
+           
+            <p class="text-left">{{ideaDescription}}</p>
              Using: 
             {{#Tags}}
             <img src="/img/tags/{{imageName}}" width="30px" height="30px">
             {{/Tags}}
         </div>
         <div class="col-md-3"></div>
-         <div class="col-md-3 text-right vertical-align">
-                <!-- Button trigger modal -->
-         <button class="btn btn-danger btn-lg" onclick="confirm('are you sure you want to leave this team?');">Leave this team</button>
-        </div>
         <hr>
     </div>
 <br>
@@ -62,7 +64,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h3 class="text-center">Teammates ({{numTeammates}}/5)</h3>
+        <h1 class="text-center">Teammates ({{numTeammates}}/5)</h1>
     </div>
 </div>
 
@@ -72,26 +74,29 @@
   $(document).ready(function() {
     var hacker_level = {{level}};
     for (i = 0; i < hacker_level; i++) { 
-        $("#hacker{{uid}}").append('<img src="/img/crystal.png" width="15px" height="15px">')
+        $("#hackerleveldiv").append('<img src="/img/crystal.png" width="15px" height="15px">')
     }
   });
 </script>
     <div class="col-md-3">
         <div class="panel panel-info text-center">
             <div class="panel-heading">
-                {{first_name}} {{last_name}}
+                <h4> {{first_name}} {{last_name}} </h4>
             </div>
             <div class="panel-body">
-                <img class="img-rounded " src="{{img}}" alt="..." height="150px" width="150px">
+                <img class="img-rounded " src="{{img}}" alt="..." height="250px" width="200px">
                 <br>
+                <p id="hackerleveldiv">
+                </p>
+                <p>
                     Hacker Level:                    
-                 <p id="hacker{{uid}}">
-                 </p>
+                </p>
+                    
             </div>
             <div class="panel-footer">
-               Special Abilities:
+                <b><p>Special Abilities:</b> 
                 <br>
-                {{skills}}
+                {{skills}}</p>
             </div>
         </div>
     </div> <!-- End Col-md-3-->

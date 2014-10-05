@@ -54,31 +54,31 @@ module.exports = function(app) {
                 if (userInfoArray == null) {
                     dataJSON.Teammates = 
                     [ 
-		    {
-			"first_name": "Daniel",
-			"last_name": "Feldman",
-			"uid": "asdf",
-			"skills": "Mad skillz yo",
-			"img":"/img/leader1.jpg",
-			"level": "5"
-		    },
-		    {
-			"first_name": "Daniel",
-			"last_name": "Feldman",
-			"uid": "qwer",
-			"skills": "Mad skillz yo 2",
-			"img":"/img/leader1.jpg",
-			"level": "5"
-		    },
-		    {
-			"first_name": "Daniel",
-			"last_name": "Feldman",
-			"uid": "zxcv",
-			"skills": "Mad skillz yo 3",
-			"img":"/img/leader1.jpg",
-			"level": "5"
-		    }
-		    ];
+                		    {
+                			"first_name": "Daniel",
+                			"last_name": "Feldman",
+                			"uid": "asdf",
+                			"skills": "Mad skillz yo",
+                			"img":"/img/leader1.jpg",
+                			"level": "5"
+                		    },
+                		    {
+                			"first_name": "Daniel",
+                			"last_name": "Feldman",
+                			"uid": "qwer",
+                			"skills": "Mad skillz yo 2",
+                			"img":"/img/leader1.jpg",
+                			"level": "5"
+                		    },
+                		    {
+                			"first_name": "Daniel",
+                			"last_name": "Feldman",
+                			"uid": "zxcv",
+                			"skills": "Mad skillz yo 3",
+                			"img":"/img/leader1.jpg",
+                			"level": "5"
+                		    }
+                		    ];
                 } else {
                     dataJSON.Teammates = userInfoArray;
                 }
@@ -148,8 +148,6 @@ module.exports = function(app) {
         var user = url_parts.query;
         delete user['callback'];
         delete user['_'];
-        var uuid1 = uuid.v1();
-        idea.uid = uuid1;
         //var user = req.params;
     	global.logger.info(user);
     	mongoConn.addUser('calhacks', user, function(err){
@@ -160,6 +158,29 @@ module.exports = function(app) {
     	});
     	mongoConn.addUser('fbhacks', user, function(err){
     	    if(err) throw err;
+            
     	});
+    });
+    app.get('/app/leaveIdea', function(req, res){
+        var url_parts = url.parse(req.url, true);
+        var data = url_parts.query;
+        delete data['callback'];
+        delete data['_'];
+        mongoConn.removeUserFromGroup(data.hackathon,data.uid,data.gid,function(err){
+            if(err) throw err;
+            res.json('success: true');
+        });
+    });
+    app.get('/app/joinIdea', function(req, res){
+        var url_parts = url.parse(req.url, true);
+        var data = url_parts.query;
+        delete data['callback'];
+        delete data['_'];
+        global.logger.info("about to call mongo");
+        mongoConn.addUserToGroup(data.hackathon,data.uid,data.gid,function(err){
+            if(err) throw err;
+            res.json('success: true');
+        });
+
     });
 };

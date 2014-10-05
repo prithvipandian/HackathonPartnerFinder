@@ -1,22 +1,23 @@
 var uuid;
 
-function leaveIdea(idea){
-  fbid(function(uuid){
-      var data = {'idea':idea, 'id':id};
+function leaveIdea(groupId,hackathon){
+  fbid(function(id){
+      var data = {'gid':groupId, 'uid':id, 'hackathon':hackathon};
       $.ajax({
       url: '/app/leaveIdea'+ "?" +$.param(data),
       dataType: 'jsonp',
       success: function(data){
           //do nothing
+          
       }
   });
 
   });
 }
 
-function joinIdea(idea){
-  fbid(function(uuid){
-      var data = {'idea':idea, 'id':id};
+function joinIdea(groupId,hackathon){
+  fbid(function(id){
+      var data = {'gid':groupId, 'uid':id, 'hackathon':hackathon};
       $.ajax({
       url: '/app/joinIdea'+ "?" +$.param(data),
       dataType: 'jsonp',
@@ -35,6 +36,7 @@ function fbid(callback){
 }
 
 function registerUser(){
+  fbid(function(uid){
   var user = {};
   user.first_name = $('#first_name').val();
   if(!user.first_name){
@@ -47,7 +49,7 @@ function registerUser(){
   user.img = $('#profilePicture').attr('src');
   user.level = $('#level').val();
   user.skills = $('#skills').val();
-  user.uuid= uuid;
+  user.uid= uid;
   console.log(user);
   //$.post( "/app/register", user );
    $.ajax({
@@ -63,11 +65,12 @@ function registerUser(){
   //   //donothing
   // } );
   $('#registerModal').modal('hide');
+});
 }
 
 
 function registerIdea(hackathon){
-  fbid(function(uuid){
+  fbid(function(uid){
   var idea = {};
   idea.hackathon= hackathon;
   idea.title= $('#title').val();

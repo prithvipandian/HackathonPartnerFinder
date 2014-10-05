@@ -74,20 +74,24 @@ exports.getUser = function(dbname, userId, next) {
 exports.addUserToGroup = function(dbname, userId, groupId, next) {
     connectToMongo(dbname, function(err, db) {
         if (err) throw err;
+        global.logger.info("entered addusertogroup");
         db.collection('ideas').update( { gid: groupId }, { $push: { users: userId } }, { w:1, upsert: true }, function(err) {
             if (err) {
                 global.logger.error('Error adding user ' + userId + ' to group');
                 next(err);
             } 
+            global.logger.info("going to call callback");
             next(null);
         });
     });
 };
 
-exports.removeUserFromGroup = function(dbame, userId, groupId, next) {
+exports.removeUserFromGroup = function(dbname, userId, groupId, next) {
     connectToMongo(dbname, function(err, db) {
         if (err) throw err;
-	db.collection('ideas').update({gid: groupId}, {$pull: {users: userId}});
+	db.collection('ideas').update({gid: groupId}, {$pull: {users: userId}}, function(err) {
+        if (err) throw err;  
+    });
     });
 };
 
