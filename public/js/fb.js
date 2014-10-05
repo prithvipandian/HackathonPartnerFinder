@@ -1,3 +1,38 @@
+function getProfile(){
+
+  FB.api(
+      "/me/picture?redirect=false&type=large",
+      function (response) {
+        if (response && !response.error) {
+          /* handle the result */
+          console.log(response)
+          var pictureUrl = response.data.url
+          FB.api(
+              "/me",
+              function (response) {
+                if (response && !response.error) {
+                  /* handle the result */
+                  console.log(response);
+                  var user = response
+                  user['url'] = pictureUrl;
+                  $('#myModalLabel').text('Hi '+ user.first_name+', create your hacker profile!');
+                  $('#first_name').attr("placeholder", user.first_name);
+                  $('#last_name').attr("placeholder", user.last_name);
+
+
+
+
+                }
+              }
+            );
+          $('#profilePicture').attr("src", response.data.url);
+        }
+      }
+  );
+
+
+}
+
 function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
@@ -5,6 +40,7 @@ function statusChangeCallback(response) {
       // Logged into your app and Facebook.
       //show modal 
       $('#registerModal').modal('show');
+      getProfile();
     } else{
      console.log("user refused login");
     }

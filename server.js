@@ -1,8 +1,10 @@
 var express = require('express'),
     app = express(),
     log4js = require('log4js');
+   // bodyParser = require('body-parser');
 
 app.use(express.static(__dirname + '/public'));
+//app.use(bodyParser());
 
 log4js.configure('./config/logappender.json', {});
 
