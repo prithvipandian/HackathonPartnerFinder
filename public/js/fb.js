@@ -1,7 +1,13 @@
 function registerUser(){
   var user = {};
   user.first_name = $('#first_name').val();
+  if(!user.first_name){
+    user.first_name = $('#first_name').attr('placeholder');
+  }
   user.last_name = $('#last_name').val();
+  if(!user.last_name){
+    user.last_name = $('#last_name').attr('placeholder');
+  }
   user.img = $('#profilePicture').attr('src');
   user.level = $('#level').val();
   user.skills = $('#skills').val();
