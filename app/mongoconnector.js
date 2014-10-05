@@ -46,6 +46,7 @@ exports.getAllIdeas = function(next) {
         db.collection('ideas').find().toArray(function(err, results) {
             next(null, results);
         });
+    });
 };
 
 exports.addUser = function(userJSON, next) {
