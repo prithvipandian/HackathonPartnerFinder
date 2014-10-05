@@ -106,7 +106,8 @@ function registerIdea(hackathon){
   idea.size= $('#size').val();
   idea.description= $('#description').val();
   var cboxArray = [];
-  $.each($(":checkbox:checked"), function(index, cbox) {
+  $.each($("input:checkbox:checked"), function(index, cbox) {
+      console.log(cbox);
       cboxArray.push({"imageName": cbox.value});
   });
   idea.Tags = cboxArray;

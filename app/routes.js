@@ -82,7 +82,10 @@ module.exports = function(app) {
                 } else {
                     dataJSON.Teammates = userInfoArray;
                 }
+
                 dataJSON.numTeammates = dataJSON.Teammates.length;
+                global.logger.info("rendering");
+                global.logger.info(dataJSON);
                 res.render("myGroup.hbs", dataJSON);                
             });
         });
@@ -125,6 +128,7 @@ module.exports = function(app) {
                 }
             ]
         };
+
         dummyJSON.numTeammates = dummyJSON.Teammates.length;
     });
 /*
@@ -137,8 +141,21 @@ module.exports = function(app) {
         delete idea['_'];
         var uuid1 = uuid.v1();
         idea.gid = uuid1;
+
+        Tags = [];
+        for(var key in idea){
+              if (idea.hasOwnProperty(key)) {
+                if(key.indexOf("image") > -1){
+                    global.logger.info("deleted key!");
+                    Tags.push({'imageName':idea[key]});
+                    delete idea[key];
+                }
+            }
+        }
+
+        idea.Tags= Tags;
         //var idea = req.params;
-        global.logger.info(idea);
+        global.logger.info(idea)
         mongoConn.addIdea(idea.hackathon, idea, function(err){
             if(err) throw err;
     	});
@@ -148,8 +165,7 @@ module.exports = function(app) {
         var user = url_parts.query;
         delete user['callback'];
         delete user['_'];
-        //var user = req.params;
-    	global.logger.info(user);
+
     	mongoConn.addUser('calhacks', user, function(err){
     	    if(err) throw err;
     	});
@@ -158,7 +174,7 @@ module.exports = function(app) {
     	});
     	mongoConn.addUser('fbhacks', user, function(err){
     	    if(err) throw err;
-            
+
     	});
     });
     app.get('/app/leaveIdea', function(req, res){
