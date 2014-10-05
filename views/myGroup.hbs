@@ -1,0 +1,95 @@
+<!-- Header -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HackaFindUs.io</title>
+<script src = "js/jquery-2.1.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/index.css">
+<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+<link href="/css/bootstrap.css" rel="stylesheet">
+<script src="/js/bootstrap.min.js"></script>
+<style type="text/css">
+  .vertical-align {
+    margin-top:20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="jumbotron" id="banner">
+        <h1>HackaFinder</h1>  
+        <h2>Hacking teams together since 2014</h2>
+</div>
+<!-- Header END -->
+<div class="container">
+    <div class="row" >
+        <div class="col-md-6 text-left vertical-align">
+                <!-- Button trigger modal -->
+                <button class="btn btn-danger btn-lg" onclick="confirm('are you sure you want to leave this team?');">Leave this team</button>
+        </div>
+    </div>
+<br>
+
+ <div class="row">
+ 
+   <div>
+       <div class="panel panel-default col-md-12">
+          <div class="panel-heading">
+            <h3 class="panel-title"></h3>
+                  <div class="media-body">
+                    <div class="col-md-6">
+                        <h4 >{{ideaTitle}}</h4>
+                        <p>{{ideaDescription}}</p>
+                    </div>
+
+                    <div class="col-md-6 text-right">
+                        {{#Tags}}
+                        <img src="/img/tags/{{imageName}}" width="30px" height="30px">
+                        {{/Tags}}            
+                    </div>
+                    
+              
+                  </div>
+                  <div class="panel-body">
+                    Looking for: {{lookingFor}}
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="row">
+        <h1 class="text-center">Teammates</h1>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title"></h3>
+                <div class="media">
+                  <a class="pull-left" href="#">
+                    <img class="media-object" src="/img/leader1.jpg" alt="..." height="50px" width="50px">
+                  </a>
+                      <div class="media-body">
+                        <div class="col-md-6">
+                            <h4 class="media-heading">GEOLOCATION HACK!</h4>
+                        Make us go to class
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="panel-body">
+                Looking for: NodeJS, Java, Android
+              </div>
+          </div>
+
+        </div> <!-- End Col-md-4-->
+        <div class="col-md-4">empty</div>
+    </div>
+
+</div> <!-- End countainer -->
+    <!-- Members rows -->
+   
+</body>
