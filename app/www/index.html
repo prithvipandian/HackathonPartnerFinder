@@ -16,7 +16,33 @@
     .pic:hover { 
         opacity: 0.9; 
         filter: alpha(opacity=30); 
+
     } 
+    .background {
+        background-color: #CCC;
+    }
+
+    @font-face {
+        font-family: zelda;
+        src: url(fonts/Triforce.ttf);
+    }
+
+    .zelda {
+        font-family: zelda;
+    }
+
+    
+
+    .jumbotron {
+    -webkit-box-shadow: 0 8px 6px -6px black;
+       -moz-box-shadow: 0 8px 6px -6px black;
+            box-shadow: 0 8px 6px -6px black;
+}
+    .container   {
+        background-color: #FFF;
+        box-shadow: 0 0 8px 2px #888;   
+        height: 700px;
+    }
 </style>
 
 <!-- Header END -->
@@ -44,12 +70,14 @@
     </div>
         
 </div>
-
+<div class="background"> 
+<div class="wrapper-extend">
+    
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="text-center">
-                <h2>It's dangerous to go alone... Find Friends!</h2>
+                <h2 class="zelda">It's dangerous to go alone... Find Friends!</h2>
             <div>
         </div>
     </div>
@@ -95,8 +123,9 @@
         </div>
     </div>
     
-</div>
-
+</div><!-- End Container-->
+</div><!-- End Wrapper-->
+</div><!-- End Background-->
 </body>
 
 

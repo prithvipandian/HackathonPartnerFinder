@@ -1,10 +1,18 @@
+var uuid;
 function registerUser(){
   var user = {};
   user.first_name = $('#first_name').val();
+  if(!user.first_name){
+    user.first_name = $('#first_name').attr('placeholder');
+  }
   user.last_name = $('#last_name').val();
+  if(!user.last_name){
+    user.last_name = $('#last_name').attr('placeholder');
+  }
   user.img = $('#profilePicture').attr('src');
   user.level = $('#level').val();
   user.skills = $('#skills').val();
+  user.uuid= uuid;
   console.log(user);
   //$.post( "/app/register", user );
    $.ajax({
@@ -69,6 +77,7 @@ function getProfile(){
                   $('#myModalLabel').text('Hi '+ user.first_name+', create your hacker profile!');
                   $('#first_name').attr("placeholder", user.first_name);
                   $('#last_name').attr("placeholder", user.last_name);
+                  uuid = user.id;
 
                 }
               }
