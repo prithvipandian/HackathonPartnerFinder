@@ -11,19 +11,12 @@
 <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 <link href="/css/bootstrap.css" rel="stylesheet">
 <script src="/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js" ></script>
-<script src= "/js/fb.js"></script>
 <script>
   $(document).ready(function() {
     $('.fb-comments').attr("data-href", document.URL);
-    
-    var hacker_level = 5;
-    for (i = 0; i < hacker_level; i++) { 
-        console.log(i);
-        $("#hackerleveldiv").append('<img src="/img/crystal.png" width="15px" height="15px">')
-        }
   });
 </script>
+<script src= "/js/fb.js"></script>
 <style type="text/css">
   .vertical-align {
     margin-top:20px;
@@ -78,13 +71,10 @@
 {{#Teammates}}
 <script>
   $(document).ready(function() {
-    $('.fb-comments').attr("data-href", document.URL);
-    
-    var hacker_level = 5;
+    var hacker_level = {{level}};
     for (i = 0; i < hacker_level; i++) { 
-        console.log(i);
         $("#hackerleveldiv").append('<img src="/img/crystal.png" width="15px" height="15px">')
-        }
+    }
   });
 </script>
     <div class="col-md-3">
