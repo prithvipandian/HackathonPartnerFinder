@@ -1,3 +1,4 @@
+
 <!-- Header -->
 <!DOCTYPE html>
 <html lang="en">
@@ -11,12 +12,21 @@
 <!-- Header END -->
 </head>
 
-<body>
+<link rel="import" href="/templates/registerModal.html">
+
+<script src = "js/fb.js"></script>
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+"Actual Button!"
+<button type="button" class="btn btn-default btn-lg" onclick="login();">
+                   Login
+                </button>
+
+
+
+                <!-- Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -25,6 +35,53 @@
       </div>
       <div class="modal-body">
 
+      <div class = "row">
+       <div class="col-md-6">
+        <p class="text-center">
+              <img id="profilePicture" src = "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg" class="img-rounded">
+              </p>
+          </div>
+
+          <div class="col-md-6">
+            <div class = "row">
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <input type="text" id="first_name" class="form-control input-sm" placeholder="First Name">
+                </div>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <input type="text" id="last_name" class="form-control input-sm" placeholder="Last Name">
+                  </div>
+              </div>
+            </div>
+            <div class = "row">
+              <div class = "col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                  <input type="text" id="hacker_level" class="form-control input-sm" placeholder="Number of previous hacks?">
+                </div>
+              </div>
+          </div>
+
+          <div class = "row">
+              <div class = "col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                  <textarea id="abilities" class="form-control input-sm" rows="3" placeholder= "Special Abilities: Ruby on Rails, Node.js, jQuery..."></textarea>
+                </div>
+              </div>
+          </div>
+
+
+
+
+
+
+          
+
+        </div>
+        </div>
+
+<!-- 
                         <form role="form">
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -52,122 +109,17 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+
                                     </div>
                                 </div>
                             </div>
-
+                         <img id="profilePicture" src = "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg">
                         
-                        </form>
+                        </form> -->
+      </div>
       <div class="modal-footer">
       <input type="submit" value="Register" class="btn btn-info btn-block">
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Init Facebook SDK -->
-    <script>
-     $('#myModal').modal('show');
-    // $('#myModal').modal({ show: false})
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '386707621414765',
-          xfbml      : true,
-          version    : 'v2.1'
-        });
-      };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-
-  function checkRegisterStatus() {
-    console.log('statusChangeCallback');
-    console.log(response);
-    response = FB.getLoginStatus();
-    if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-      //Trigger modal
-
-    } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-      $('#myModal').modal('show');
-      alert("Failure!");
-    } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
-    }
-  }
-
-
-    </script>
-
-</div>
-
-<div class="jumbotron" id="banner">
-        <h1>HackaFinder</h1>  
-        <h2>Hacking teams together since 2014</h2>
-</div>
-
-<div class="container">
-    <div class="row">
-    <!-- Button trigger modal -->
-
-
-        <div class = "col-md-12">
-            <div class = "text-center">
-                <fb:login-button scope="public_profile,email" onlogin="checkRegisterStatus()">
-                </fb:login-button>
-
-                <div id="status">
-                <!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> -->
-                     <!-- Register -->
-                <!-- </button> -->
-            </div>
-        </div>
-    </div>
-</div>
-
-</body>
-
-
-
-
-
-
-
-
-
-
-
-
-
