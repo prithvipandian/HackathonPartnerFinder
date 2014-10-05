@@ -1,5 +1,6 @@
 var landingPage = '/www/index.html',
-    mustache = require('mustache');
+    mustache = require('mustache'),
+    mongoConn = require('./mongoconnector');
 
 
 module.exports = function(app) {
@@ -44,5 +45,12 @@ module.exports = function(app) {
 */
     app.post('/app/teaminfo', function(req, res) {
         global.logger.info(req.body);
+    });
+    app.post('/app/register', function(req,res){
+    	var user = req.body;
+    	global.logger.info(user);
+    	mongoConn.addUser(user, function(err){
+    		if(err) throw err;
+    	});
     });
 };

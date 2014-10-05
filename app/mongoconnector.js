@@ -24,7 +24,7 @@ exports.addIdea = function(ideaJSON, next) {
         db.collection('ideas').update( { name: 'idea_array' }, { $push: { ideaArray: ideaJSON } }, { w:1, upsert: true }, function(err) {
             if (err) {
                 global.logger.error('Error updating idea_array document in collection ideas');
-                return;
+                next(err);
             } 
             next(null);
         });
@@ -46,7 +46,7 @@ exports.addUser = function(userJSON, next) {
         db.collection('users').update( { name: 'user_array' }, { $push: { userArray: userJSON } }, { w:1, upsert: true }, function(err) {
             if (err) {
                 global.logger.error('Error updating user_array document in collection users');
-                return;
+                next(err);
             } 
             next(null);
         });
