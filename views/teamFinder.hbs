@@ -45,13 +45,36 @@
     </div>
     <hr>
     <div class="row">
-
+{{#Teams}}
+       <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"></h3>
+            <div class="media">
+              <a class="pull-left" href="#">
+                <img class="media-object" src="/img/leader1.jpg" alt="..." height="50px" width="50px">
+              </a>
+                  <div class="media-body">
+                    <div class="col-md-6">
+                        <h4 class="media-heading">{{Title}}</h4>
+                    {{Description}}
+                    </div>
+                    <div class="col-md-6 text-right">
+                      {{#Tags}}
+                        <img src="/img/tags/{{imageName}}" width="30px" height="30px">
+                      {{/Tags}}
+                    </div>
+                    
+                </div>
+            </div>
+          </div>
+          <div class="panel-body">
+            Looking for: {{lookingFor}}
+          </div>
+      </div>
+{{/Teams}}
     </div>
     </div>
 </div>
-
-</body>
-
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -62,7 +85,7 @@
         <h4 class="modal-title" id="myModalLabel"> Create new Team</h4>
       </div>
       <div class="modal-body">
-        <form class= "form-new-group" method="post" action="/app/teaminfo">
+        <form class= "form-new-group">
           <div class="control-group">
             <label class="control-label" for="inputEmail">Title</label>
               <div class="controls">
@@ -104,3 +127,5 @@
 
 <!-- Modal -->
 </body>
+
+
