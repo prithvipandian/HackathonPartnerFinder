@@ -17,7 +17,7 @@
   $(document).ready(function() {
     $('.fb-comments').attr("data-href", document.URL);
     
-   var hacker_level = 5;
+    var hacker_level = 5;
     for (i = 0; i < hacker_level; i++) { 
         console.log(i);
         $("#hackerleveldiv").append('<img src="/img/crystal.png" width="15px" height="15px">')
@@ -53,13 +53,13 @@
          <button class="btn btn-danger btn-lg" onclick="confirm('are you sure you want to leave this team?');">Leave this team</button>
         </div>
         <div class="col-md-6 text-center">
-            <h2>Geolocation Hack</h2>
+            <h2>{{ideaTitle}}</h2>
            
-            <p class="text-left">Employ geolocation and location of events on google calendar, force us to become racists.</p>
+            <p class="text-left">{{ideaDescription}}</p>
              Using: 
-            <img src="/img/tags/android.png" width="30px" height="30px">
-                              
-                                <img src="/img/tags/nodejs.jpeg" width="30px" height="30px">
+            {{#Tags}}
+            <img src="/img/tags/{{imageName}}" width="30px" height="30px">
+            {{/Tags}}
         </div>
         <div class="col-md-3"></div>
         <hr>
@@ -70,18 +70,30 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h1 class="text-center">Teammates (1/5)</h1>
+        <h1 class="text-center">Teammates ({{numTeammates}}/5)</h1>
     </div>
 </div>
 
 <div class="row">
+{{#Teammates}}
+<script>
+  $(document).ready(function() {
+    $('.fb-comments').attr("data-href", document.URL);
+    
+    var hacker_level = 5;
+    for (i = 0; i < hacker_level; i++) { 
+        console.log(i);
+        $("#hackerleveldiv").append('<img src="/img/crystal.png" width="15px" height="15px">')
+        }
+  });
+</script>
     <div class="col-md-3">
         <div class="panel panel-info text-center">
             <div class="panel-heading">
-                <h4> Daniel Feldman</h4>
+                <h4> {{first_name}} {{last_name}} </h4>
             </div>
             <div class="panel-body">
-                <img class="img-rounded " src="/img/leader1.jpg" alt="..." height="250px" width="200px">
+                <img class="img-rounded " src="{{img}}" alt="..." height="250px" width="200px">
                 <br>
                 <p id="hackerleveldiv">
                 </p>
@@ -93,16 +105,12 @@
             <div class="panel-footer">
                 <b><p>Special Abilities:</b> 
                 <br>
-                Django, UI/UX, Bootstrap, Shotgunning, Android Charging</p>
+                {{skills}}</p>
             </div>
         </div>
     </div> <!-- End Col-md-3-->
-
-    
-
+{{/Teammates}}
 </div> <!-- End row-->
-
-
 
 </div> <!-- End countainer -->
     <!-- Members rows -->
