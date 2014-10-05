@@ -63,8 +63,8 @@ module.exports = function(app) {
     		if(err) throw err;
     	});
     });
-    app.post('/app/register', function(req,res){
-    	var user = req.body;
+    app.get('/app/register', function(req,res){
+        var user = url.parse(req.url);
     	global.logger.info(user);
     	mongoConn.addUser(user, function(err){
     		if(err) throw err;
