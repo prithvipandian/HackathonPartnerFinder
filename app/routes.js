@@ -3,6 +3,9 @@ var landingPage = '/www/index.html',
 
 
 module.exports = function(app) {
+/*
+================== STATIC ROUTES =====================
+*/
     app.get('/', function(req, res) {
         res.sendFile(__dirname + landingPage);
     });
@@ -17,7 +20,7 @@ module.exports = function(app) {
 		"imageName": "android.png"
 	    },
 	    {
-		"imageName": "nodejs.jpeg"
+	        "imageName": "nodejs.jpeg"
 	    }
 			 ],
 		"lookingFor": "NodeJS, Java, Android"
@@ -32,5 +35,11 @@ module.exports = function(app) {
     });
     app.get('/myGroup/', function(req, res) {
         res.sendFile(__dirname + "/www/myGroup.html");
+    });
+/*
+======================== API START =======================
+*/
+    app.post('/app/teaminfo', function(req, res) {
+	    global.logger.info(req);
     });
 };
