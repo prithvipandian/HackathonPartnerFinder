@@ -80,13 +80,13 @@ function statusChangeCallback(response) {
   }
 
   function login(){
-     FB.getLoginStatus(function(response){
-      if(response.status !== "connected"){
+     //FB.getLoginStatus(function(response){
+     // if(response.status !== "connected"){
             FB.login(function(response){
       statusChangeCallback(response);
      }); 
-      }
-     })
+     // }
+     //})
 
   }
 
