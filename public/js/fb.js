@@ -70,9 +70,14 @@ function statusChangeCallback(response) {
   }
 
   function login(){
-     FB.login(function(response){
+     FB.getLoginStatus(function(response){
+      if(response.status !== "connected"){
+            FB.login(function(response){
       statusChangeCallback(response);
      }); 
+      }
+     })
+
   }
 
   window.fbAsyncInit = function() {
