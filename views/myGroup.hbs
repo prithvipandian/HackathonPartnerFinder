@@ -4,25 +4,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>HackaFindUs.io</title>
+
+<script src = "/js/jquery-2.1.1.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="../css/index.css">
 <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 <link href="/css/bootstrap.css" rel="stylesheet">
 <script src="/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js" ></script>
 <script src= "/js/fb.js"></script>
 <script>
   $(document).ready(function() {
     $('.fb-comments').attr("data-href", document.URL);
-    var hacker_level = 5;
+    
+   var hacker_level = 5;
     for (i = 0; i < hacker_level; i++) { 
+        console.log(i);
         $("#hackerleveldiv").append('<img src="/img/crystal.png" width="15px" height="15px">')
-    }
+        }
   });
 </script>
-
 <style type="text/css">
   .vertical-align {
     margin-top:20px;
-  }
+}
+
   .poke {
     background-image: "/img/pokecard.png";
     width: 421px;
@@ -39,73 +45,66 @@
         <h2>Hacking teams together since 2014</h2>
 </div>
 <!-- Header END -->
+
 <div class="container">
     <div class="row" >
-        <div class="col-md-6 text-left vertical-align">
+        <div class="col-md-3 text-left vertical-align">
                 <!-- Button trigger modal -->
-                <button class="btn btn-danger btn-lg" onclick="confirm('are you sure you want to leave this team?');">Leave this team</button>
+         <button class="btn btn-danger btn-lg" onclick="confirm('are you sure you want to leave this team?');">Leave this team</button>
         </div>
+        <div class="col-md-6 text-center">
+            <h2>Geolocation Hack</h2>
+           
+            <p class="text-left">Employ geolocation and location of events on google calendar, force us to become racists.</p>
+             Using: 
+            <img src="/img/tags/android.png" width="30px" height="30px">
+                              
+                                <img src="/img/tags/nodejs.jpeg" width="30px" height="30px">
+        </div>
+        <div class="col-md-3"></div>
+        <hr>
     </div>
 <br>
 
- <div class="row">
- 
-   <div>
-       <div class="panel panel-default col-md-12">
-          <div class="panel-heading">
-            <h3 class="panel-title"></h3>
-                  <div class="media-body">
-                    <div class="col-md-6">
-                        <h4 >{{ideaTitle}}</h4>
-                        <p>{{ideaDescription}}</p>
-                    </div>
 
-                    <div class="col-md-6 text-right">
-                        {{#Tags}}
-                        <img src="/img/tags/{{imageName}}" width="30px" height="30px">
-                        {{/Tags}}            
-                    </div>
-                    
-              
-                  </div>
-                  <div class="panel-body">
-                    Looking for: {{lookingFor}}
-                  </div>
-            </div>
-        </div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center">Teammates (1/5)</h1>
     </div>
 </div>
 
-    <div class="row">
-        <h1 class="text-center">Teammates</h1>
-
-        <div class="col-md-4">
-            <div class="panel panel-default text-center">
-              <div class="panel-heading">
-                <h3> DANIEL FELDMAN</h3>
-                <img class="img-rounded " src="/img/leader1.jpg" alt="..." height="300px" width="240px">
+<div class="row">
+    <div class="col-md-3">
+        <div class="panel panel-info text-center">
+            <div class="panel-heading">
+                <h4> Daniel Feldman</h4>
+            </div>
+            <div class="panel-body">
+                <img class="img-rounded " src="/img/leader1.jpg" alt="..." height="250px" width="200px">
                 <br>
                 <p id="hackerleveldiv">
                 </p>
                 <p>
                     Hacker Level:                    
                 </p>
-                
-              </div>
-              <div class="panel-body">
-                <p>Special Abilities:</p>
-                <p>Django, UI, Bootstrap, Shotgunning, Android Charging</p>
-              </div>
-          </div>
+                    
+            </div>
+            <div class="panel-footer">
+                <b><p>Special Abilities:</b> 
+                <br>
+                Django, UI/UX, Bootstrap, Shotgunning, Android Charging</p>
+            </div>
+        </div>
+    </div> <!-- End Col-md-3-->
 
-        </div> <!-- End Col-md-4-->
+    
 
-        
-    </div>
+</div> <!-- End row-->
+
+
 
 </div> <!-- End countainer -->
     <!-- Members rows -->
    
 </body>
-
-
