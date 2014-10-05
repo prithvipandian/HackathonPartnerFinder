@@ -13,9 +13,6 @@ module.exports = function(app) {
     app.get('/register/', function(req, res) {
         res.sendFile(__dirname + "/www/register.html");
     });
-    app.get('/myGroup/', function(req, res) {
-        res.sendFile(__dirname + "/www/myGroup.html");
-    });
 /*
 ================= TEMPLATE RENDERINGS  ==================
 */
@@ -39,6 +36,22 @@ module.exports = function(app) {
 	    };
         
         res.render("teamFinder.hbs", dummyJSON);
+    });
+    app.get('/myGroup/', function(req, res) {
+        var dummyJSON = {
+            "ideaTitle": "GEOLOCATION HACK!",
+            "ideaDescription": "Make us go to class",
+            "Tags": [
+	        {
+                    "imageName": "android.png"
+                },
+	        {
+                    "imageName": "nodejs.jpeg"
+	        },
+	    ],
+            "lookingFor": "NodeJS, Android, Wearables"
+        };
+        res.render("myGroup.hbs", dummyJSON);
     });
 /*
 ======================== API START =======================
