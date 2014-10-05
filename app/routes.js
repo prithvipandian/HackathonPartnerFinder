@@ -24,24 +24,6 @@ module.exports = function(app) {
             dataJSON.hackathon = hackathon;
             res.render("teamFinder.hbs", dataJSON);
         }); 
-	var dummyJSON = {
-		"Teams": [
-	    {
-		"Title": "GEOLOCATION HACK!",
-		"Description": "Make us go to class",
-		"Tags": [
-	    {
-		"imageName": "android.png"
-	    },
-	    {
-	        "imageName": "nodejs.jpeg"
-	    }
-			 ],
-		"lookingFor": "NodeJS, Java, Android"
-	    }
-  ]
-	    };
-        
     });
     app.get('/myGroup/', function(req, res) {
         var hackathon = req.param("hackathon");
@@ -51,39 +33,15 @@ module.exports = function(app) {
             var dataJSON = ideaJSON;
             mongoConn.getAllUsersOfGroup(hackathon, groupId, function(err2, userInfoArray) {
                 if (err2) throw err2;
+                dataJSON = {};
+                dataJSON.numTeammates = 0;
                 if (userInfoArray == null) {
-                    dataJSON.Teammates = 
-                    [ 
-                		    {
-                			"first_name": "Daniel",
-                			"last_name": "Feldman",
-                			"uid": "asdf",
-                			"skills": "Mad skillz yo",
-                			"img":"/img/leader1.jpg",
-                			"level": "5"
-                		    },
-                		    {
-                			"first_name": "Daniel",
-                			"last_name": "Feldman",
-                			"uid": "qwer",
-                			"skills": "Mad skillz yo 2",
-                			"img":"/img/leader1.jpg",
-                			"level": "5"
-                		    },
-                		    {
-                			"first_name": "Daniel",
-                			"last_name": "Feldman",
-                			"uid": "zxcv",
-                			"skills": "Mad skillz yo 3",
-                			"img":"/img/leader1.jpg",
-                			"level": "5"
-                		    }
-                		    ];
+    
                 } else {
+                    dataJSON.numTeammates = dataJSON.Teammates.length;
                     dataJSON.Teammates = userInfoArray;
                 }
 
-                dataJSON.numTeammates = dataJSON.Teammates.length;
                 global.logger.info("rendering");
                 global.logger.info(dataJSON);
                 res.render("myGroup.hbs", dataJSON);                
