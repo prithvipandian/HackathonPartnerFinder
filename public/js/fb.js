@@ -1,5 +1,42 @@
 var uuid;
+
+function leaveIdea(groupId,hackathon){
+  fbid(function(id){
+      var data = {'gid':groupId, 'uid':id, 'hackathon':hackathon};
+      $.ajax({
+      url: '/app/leaveIdea'+ "?" +$.param(data),
+      dataType: 'jsonp',
+      success: function(data){
+          //do nothing
+          
+      }
+  });
+
+  });
+}
+
+function joinIdea(groupId,hackathon){
+  fbid(function(id){
+      var data = {'gid':groupId, 'uid':id, 'hackathon':hackathon};
+      $.ajax({
+      url: '/app/joinIdea'+ "?" +$.param(data),
+      dataType: 'jsonp',
+      success: function(data){
+          //do nothing
+      }
+  });
+
+  });
+}
+
+function fbid(callback){
+  FB.getLoginStatus(function(response){
+    callback(response.authResponse.userID);
+  });
+}
+
 function registerUser(){
+  fbid(function(uid){
   var user = {};
   user.first_name = $('#first_name').val();
   if(!user.first_name){
@@ -12,7 +49,7 @@ function registerUser(){
   user.img = $('#profilePicture').attr('src');
   user.level = $('#level').val();
   user.skills = $('#skills').val();
-  user.uuid= uuid;
+  user.uid= uid;
   console.log(user);
   //$.post( "/app/register", user );
    $.ajax({
@@ -28,9 +65,12 @@ function registerUser(){
   //   //donothing
   // } );
   $('#registerModal').modal('hide');
+});
 }
 
+
 function registerIdea(hackathon){
+  fbid(function(uid){
   var idea = {};
   idea.hackathon= hackathon;
   
@@ -39,6 +79,11 @@ function registerIdea(hackathon){
   idea.keywords= $('#keywords').val();
   idea.size= $('#size').val();
   idea.description= $('#description').val();
+  var cboxArray = [];
+  $.each($(":checkbox:checked"), function(index, cbox) {
+      cboxArray.push({"imageName": cbox.value});
+  });
+  idea.Tags = cboxArray;
 
   $.ajax({
       url: '/app/teamInfo'+ "?" +$.param(idea),
@@ -54,6 +99,8 @@ function registerIdea(hackathon){
   //   //donothing
   // } );
   $('#myModal').modal('hide');
+  });
+
 }
 
 
