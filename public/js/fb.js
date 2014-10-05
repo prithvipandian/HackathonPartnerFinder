@@ -1,12 +1,29 @@
+var uuid;
 function registerUser(){
   var user = {};
   user.first_name = $('#first_name').val();
+  if(!user.first_name){
+    user.first_name = $('#first_name').attr('placeholder');
+  }
   user.last_name = $('#last_name').val();
+  if(!user.last_name){
+    user.last_name = $('#last_name').attr('placeholder');
+  }
   user.img = $('#profilePicture').attr('src');
   user.level = $('#level').val();
   user.skills = $('#skills').val();
+  user.uuid= uuid;
   console.log(user);
-  $.post( "/app/register", user );
+  //$.post( "/app/register", user );
+   $.ajax({
+      url: "/app/register"+"?" +$.param(user),
+      dataType: 'jsonp',
+      success: function(data){
+          //do nothing
+      }
+  });
+  //$.getJSON("/app/register"+"?" +$.param(user), 
+  //          function(data) { onComplete(data); });
   // $.get( "/app/register"+"?" +$.param(user), function(retval){
   //   //donothing
   // } );
@@ -20,7 +37,17 @@ function registerIdea(){
   idea.keywords= $('#keywords').val();
   idea.size= $('#size').val();
   idea.description= $('#description').val();
-  $.post( "/app/teamInfo", idea );
+
+  $.ajax({
+      url: '/app/teamInfo'+ "?" +$.param(idea),
+      dataType: 'jsonp',
+      success: function(data){
+          //do nothing
+      }
+  });
+  //$.getJSON('/app/teamInfo'+ "?" +$.param(idea), 
+  //          function(data) { onComplete(data); });
+  //$.post( "/app/teamInfo", idea );
   // $.get( "/app/teamInfo"+ "?" +$.param(idea), function(retval){
   //   //donothing
   // } );
@@ -50,6 +77,7 @@ function getProfile(){
                   $('#myModalLabel').text('Hi '+ user.first_name+', create your hacker profile!');
                   $('#first_name').attr("placeholder", user.first_name);
                   $('#last_name').attr("placeholder", user.last_name);
+                  uuid = user.id;
 
                 }
               }
@@ -76,13 +104,13 @@ function statusChangeCallback(response) {
   }
 
   function login(){
-     FB.getLoginStatus(function(response){
-      if(response.status !== "connected"){
+     //FB.getLoginStatus(function(response){
+     // if(response.status !== "connected"){
             FB.login(function(response){
       statusChangeCallback(response);
      }); 
-      }
-     })
+     // }
+     //})
 
   }
 

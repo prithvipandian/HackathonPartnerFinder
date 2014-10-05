@@ -4,7 +4,7 @@ var MongoClient = require('mongodb').MongoClient,
 
 var connectToMongo = function(next) {
     if (mclient) {
-        next(mclient);
+        next(null, mclient);
     } else {
         MongoClient.connect(mongoURL, function(err, db) {
             if (err) {

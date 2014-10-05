@@ -11,7 +11,6 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', './views');
 app.set('view engine', 'hbs');
 
-
 log4js.configure('./config/logappender.json', {});
 
 global.logger = log4js.getLogger('app');
