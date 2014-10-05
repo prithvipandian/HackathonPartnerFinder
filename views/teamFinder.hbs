@@ -75,7 +75,6 @@
     </div>
     </div>
 </div>
-
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -85,7 +84,7 @@
         <h4 class="modal-title" id="myModalLabel"> Create new Team</h4>
       </div>
       <div class="modal-body">
-        <form class= "form-new-group">
+        <form class= "form-new-group" method="post" action="/app/teaminfo">
           <div class="control-group">
             <label class="control-label" for="inputEmail">Title</label>
               <div class="controls">
@@ -116,16 +115,18 @@
                   <textarea class="form-control" placeholder="Description" id="description" rows="7"></textarea>
                 </div>
           </div>
-        </form>
       </div>
       <div class="modal-footer">
-        <button type="Submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-primary">Create</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
 
 <!-- Modal -->
 </body>
+
+
 
 

@@ -9,6 +9,15 @@ module.exports = function(app) {
     app.get('/', function(req, res) {
         res.sendFile(__dirname + landingPage);
     });
+    app.get('/register/', function(req, res) {
+        res.sendFile(__dirname + "/www/register.html");
+    });
+    app.get('/myGroup/', function(req, res) {
+        res.sendFile(__dirname + "/www/myGroup.html");
+    });
+/*
+================= TEMPLATE RENDERINGS  ==================
+*/
     app.get('/teamFinder/', function(req, res) {
 	var dummyJSON = {
 		"Teams": [
@@ -29,12 +38,6 @@ module.exports = function(app) {
 	    };
         
         res.render("teamFinder.hbs", dummyJSON);
-    });
-    app.get('/register/', function(req, res) {
-        res.sendFile(__dirname + "/www/register.html");
-    });
-    app.get('/myGroup/', function(req, res) {
-        res.sendFile(__dirname + "/www/myGroup.html");
     });
 /*
 ======================== API START =======================
