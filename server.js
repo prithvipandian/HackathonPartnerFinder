@@ -1,10 +1,15 @@
 var express = require('express'),
     app = express(),
+    hbs = require('hbs'),
+    mustache = require('mustache');
     log4js = require('log4js');
    // bodyParser = require('body-parser');
 
 app.use(express.static(__dirname + '/public'));
-//app.use(bodyParser());
+
+app.set('views', './views');
+app.set('view engine', 'hbs');
+
 
 log4js.configure('./config/logappender.json', {});
 

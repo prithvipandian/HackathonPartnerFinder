@@ -9,13 +9,12 @@
 <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 <link href="/css/bootstrap.css" rel="stylesheet">
 <script src="/js/bootstrap.min.js"></script>
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js" ></script>
 <style type="text/css">
   .vertical-align {
     margin-top:20px;
 }
 </style>
-
 
 </head>
 
@@ -46,7 +45,8 @@
     </div>
     <hr>
     <div class="row">
-        <div class="panel panel-default">
+{{#Teams}}
+       <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title"></h3>
             <div class="media">
@@ -55,32 +55,26 @@
               </a>
                   <div class="media-body">
                     <div class="col-md-6">
-                        <h4 class="media-heading">GEOLOCATION HACK: Make us go to class</h4>
-                    Location based app that uses google calendar data to check if you are in class!
+                        <h4 class="media-heading">{{Title}}</h4>
+                    {{Description}}
                     </div>
                     <div class="col-md-6 text-right">
-                        <img src="/img/tags/android.png" width="30px" height="30px">
-                        <img src="/img/tags/nodejs.jpeg" width="30px" height="30px">
+                      {{#Tags}}
+                        <img src="/img/tags/{{imageName}}" width="30px" height="30px">
+                      {{/Tags}}
                     </div>
                     
                 </div>
             </div>
           </div>
           <div class="panel-body">
-            Looking for: Node.js devs, Frontend, Alaska
+            Looking for: {{lookingFor}}
           </div>
-</div>
+      </div>
+{{/Teams}}
+    </div>
     </div>
 </div>
-
-</body>
-
-<!-- Modal  -->
-
-<!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -88,15 +82,45 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel"> Create new Team</h4>
       </div>
       <div class="modal-body">
-        ...
+        <form class= "form-new-group" method="post" action="/app/teaminfo">
+          <div class="control-group">
+            <label class="control-label" for="inputEmail">Title</label>
+              <div class="controls">
+                  <input type="text" id="title" placeholder="Title">
+              </div>
+            </div>
+          <div class="control-group">
+            <label class="control-label" for="inputLooking">Looking for</label>
+              <div class="controls">
+                  <input type="text" id="looking" placeholder="e.g. backend developer">
+              </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="inputKeywords">Keywords</label>
+              <div class="controls">
+                  <input type="text" id="keywords" placeholder="e.g. Node.js, Ruby ">
+              </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="inputSize">Group Size</label>
+              <div class="controls">
+                  <input type="text" id="size" placeholder="Size">
+              </div>
+          </div>
+           <div class="control-group">
+            <label class="control-label" for="inputDescription">Description</label>
+                <div class="controls">
+                  <textarea class="form-control" placeholder="Description" id="description" rows="7"></textarea>
+                </div>
+          </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Create</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
