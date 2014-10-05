@@ -8,4 +8,7 @@ module.exports = function(app) {
     app.get('/teamFinder/', function(req, res) {
         res.sendFile(__dirname + "/www/teamFinder.html");
     });
+    app.get('/register/', function(req, res) {
+        res.sendFile(__dirname + "/www/register.html");
+    });
 };
