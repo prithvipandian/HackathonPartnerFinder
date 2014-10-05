@@ -65,9 +65,11 @@ function registerUser(){
   $('#registerModal').modal('hide');
 }
 
-function registerIdea(){
+
+function registerIdea(hackathon){
   fbid(function(uuid){
   var idea = {};
+  idea.hackathon= hackathon;
   idea.title= $('#title').val();
   idea.looking= $('#looking').val();
   idea.keywords= $('#keywords').val();
