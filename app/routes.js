@@ -44,14 +44,44 @@ module.exports = function(app) {
         
     });
     app.get('/myGroup/', function(req, res) {
-        var hackathon = req.params("hackathon");
-        var groupId = req.params("groupId");
+        var hackathon = req.param("hackathon");
+        var groupId = req.param("groupId");
         mongoConn.getIdea(hackathon, groupId, function(err, ideaJSON) {
             if (err) throw err;
             var dataJSON = ideaJSON;
             mongoConn.getAllUsersOfGroup(hackathon, groupId, function(err2, userInfoArray) {
                 if (err2) throw err2;
-                dataJSON.Teammates = userInfoArray;
+                if (userInfoArray == null) {
+                    dataJSON.Teammates = 
+                    [ 
+		    {
+			"first_name": "Daniel",
+			"last_name": "Feldman",
+			"uid": "asdf",
+			"skills": "Mad skillz yo",
+			"img":"/img/leader1.jpg",
+			"level": "5"
+		    },
+		    {
+			"first_name": "Daniel",
+			"last_name": "Feldman",
+			"uid": "qwer",
+			"skills": "Mad skillz yo 2",
+			"img":"/img/leader1.jpg",
+			"level": "5"
+		    },
+		    {
+			"first_name": "Daniel",
+			"last_name": "Feldman",
+			"uid": "zxcv",
+			"skills": "Mad skillz yo 3",
+			"img":"/img/leader1.jpg",
+			"level": "5"
+		    }
+		    ];
+                } else {
+                    dataJSON.Teammates = userInfoArray;
+                }
                 dataJSON.numTeammates = dataJSON.Teammates.length;
                 res.render("myGroup.hbs", dataJSON);                
             });
