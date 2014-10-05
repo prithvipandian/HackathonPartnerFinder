@@ -1,3 +1,18 @@
+function registerUser(){
+  var user = {};
+  user.first_name = $('#first_name').val();
+  user.last_name = $('#last_name').val();
+  user.img = $('#profilePicture').attr('src');
+  user.level = $('#level').val();
+  user.skills = $('#skills').val();
+  console.log(user);
+  $.post( "/app/register", user );
+  $('#registerModal').modal('hide');
+}
+
+
+
+
 function getProfile(){
 
   FB.api(
@@ -18,9 +33,6 @@ function getProfile(){
                   $('#myModalLabel').text('Hi '+ user.first_name+', create your hacker profile!');
                   $('#first_name').attr("placeholder", user.first_name);
                   $('#last_name').attr("placeholder", user.last_name);
-
-
-
 
                 }
               }

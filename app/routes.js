@@ -45,4 +45,7 @@ module.exports = function(app) {
     app.post('/app/teaminfo', function(req, res) {
 	    global.logger.info(req);
     });
+    app.post('/app/request', function(req,rest){
+    	global.logger.info(req);
+    });
 };
