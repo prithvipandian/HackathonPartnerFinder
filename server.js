@@ -6,7 +6,7 @@ var express = require('express'),
     log4js = require('log4js');
    // bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.static(__dirname + '/public'));
 
 app.set('views', './views');
