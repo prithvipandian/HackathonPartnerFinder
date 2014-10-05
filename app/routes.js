@@ -21,7 +21,8 @@ module.exports = function(app) {
         mongoConn.getAllIdeas(hackathon, function(err, teamsArray) {
             if (err) throw err;
             var dataJSON = { "Teams": teamsArray };
-            res.redner("teamFinder.hbs", dataJSON);
+            dataJSON.hackathon = hackathon;
+            res.render("teamFinder.hbs", dataJSON);
         }); 
 	var dummyJSON = {
 		"Teams": [

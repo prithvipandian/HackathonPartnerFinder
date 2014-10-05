@@ -72,7 +72,7 @@
   $(document).ready(function() {
     var hacker_level = {{level}};
     for (i = 0; i < hacker_level; i++) { 
-        $("#hacker{{uuid}}").append('<img src="/img/crystal.png" width="15px" height="15px">')
+        $("#hacker{{uid}}").append('<img src="/img/crystal.png" width="15px" height="15px">')
     }
   });
 </script>
@@ -85,7 +85,7 @@
                 <img class="img-rounded " src="{{img}}" alt="..." height="150px" width="150px">
                 <br>
                     Hacker Level:                    
-                 <p id="hacker{{uuid}}">
+                 <p id="hacker{{uid}}">
                  </p>
             </div>
             <div class="panel-footer">
