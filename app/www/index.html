@@ -1,4 +1,4 @@
-<!-- Header -->
+¥<!-- Header -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +44,7 @@
         height: 700px;
     }
 </style>
-
+<script type="text/javascript" src="index.js"></script>
 <!-- Header END -->
 
 
@@ -84,24 +84,29 @@
     <hr>
     <div class="row">
         <div class="col-md-4 text-center"> 
-            <a href="\teamFinder">
-                <img class="pic img-rounded" src="img/calhacks.png">
-            </a>
-            
-            
+                <img class="pic img-rounded" src="img/calhacks.png" id="calhacks">
         </div>
+        <script>
+            $("#calhacks").click(function(){
+            $.get("?hackathon=calhacks");
+          });
+        </script>
         <div class="col-md-4 text-center"> 
-            <a href="\teamFinder">
-                <img class="pic img-rounded" src="img/facebook.jpg">
-            </a>
-           
+            <img class="pic img-rounded" src="img/facebook.jpg" id="fbhacks">
         </div>
+        <script>
+            $("#fbhacks").click(function(){
+            $.get("?hackathon=fbhacks");
+          });
+        </script>
         <div class="col-md-4 text-center"> 
-            <a href="\teamFinder">
-                <img class="pic img-rounded" src="img/lahacks.png">
-            </a>
-            
+                <img class="pic img-rounded" src="img/lahacks.png" id="lahacks">
         </div>
+        <script>
+            $("#lahacks").click(function(){
+            $.get("?hackathon=lahacks");
+          });
+        </script>
     </div>
 <br>
 
