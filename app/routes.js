@@ -59,6 +59,8 @@ module.exports = function(app) {
     app.get('/app/teaminfo', function(req, res) {
         var url_parts = url.parse(req.url, true);
         var idea = url_parts.query;
+        delete idea['callback'];
+        delete idea['_'];
         //var idea = req.params;
         global.logger.info(idea);
         mongoConn.addIdea(idea, function(err){
@@ -68,6 +70,8 @@ module.exports = function(app) {
     app.get('/app/register', function(req,res){
         var url_parts = url.parse(req.url, true);
         var user = url_parts.query;
+        delete user['callback'];
+        delete user['_'];
         //var user = req.params;
     	global.logger.info(user);
     	mongoConn.addUser(user, function(err){
