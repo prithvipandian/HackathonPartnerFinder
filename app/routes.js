@@ -1,6 +1,6 @@
 var landingPage = '/www/index.html',
-    mustache = require('mustache'),
-    mongoConn = require('./mongoconnector');
+            url = require('url'),
+      mongoConn = require('./mongoconnector');
 
 
 module.exports = function(app) {
@@ -56,18 +56,18 @@ module.exports = function(app) {
 /*
 ======================== API START =======================
 */
-    app.post('/app/teaminfo', function(req, res) {
-    	var idea = req.body;
+    app.get('/app/teaminfo', function(req, res) {
+        var idea = url.parse(req.url);
         global.logger.info(idea);
         mongoConn.addIdea(idea, function(err){
-    		if(err) throw err;
+            if(err) throw err;
     	});
     });
     app.get('/app/register', function(req,res){
         var user = url.parse(req.url);
     	global.logger.info(user);
     	mongoConn.addUser(user, function(err){
-    		if(err) throw err;
+    	    if(err) throw err;
     	});
     });
 };
